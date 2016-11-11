@@ -1,0 +1,58 @@
+{
+  "message": "ok",
+  "status": 200,
+  "data": [
+    {
+
+      "photo": {
+        "width": 1280,
+        "height": 600,
+        "photo_url": "http://inspiration.chanyouji.cn/Advert/136/d09438a84e7009404e21dd6b907f9b59.jpg"
+      },
+      "id": 136,
+      "ios_url": "",
+      "android_url": "",
+      "target_id": "18",
+      "advert_type": "album",
+      "topic": "酒店达人带你睡遍全球",
+      "market": "all",
+      "open_in_browser": false
+
+    },
+    {
+
+      "photo": {
+        "width": 1280,
+        "height": 600,
+        "photo_url": "http://inspiration.chanyouji.cn/Advert/135/3a5a8918bc0f1656ab0621e02d532b20.jpg"
+      },
+      "id": 135,
+      "ios_url": "",
+      "android_url": "",
+      "target_id": "95",
+      "advert_type": "album",
+      "topic": "氢气球每周精选",
+      "market": "all",
+      "open_in_browser": false
+
+    },
+    {
+
+      "photo": {
+        "width": 1280,
+        "height": 600,
+        "photo_url": "http://inspiration.chanyouji.cn/Advert/128/3767179302031cf063bc7d85454bf3cd.jpg"
+      },
+      "id": 128,
+      "ios_url": "",
+      "android_url": "",
+      "target_id": "90",
+      "advert_type": "album",
+      "topic": "在热气球里遇见世界",
+      "market": "all",
+      "open_in_browser": false
+
+    }
+  ]
+
+}

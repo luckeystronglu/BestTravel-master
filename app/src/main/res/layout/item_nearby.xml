@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/plan_des_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/near_img"
+        android:layout_width="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher"
+        android:layout_height="90dp" />
+    <TextView
+        android:id="@+id/near_textchn"
+        android:layout_toRightOf="@+id/near_img"
+        android:text="云南"
+        android:layout_marginTop="30dp"
+        android:textColor="#615f5f"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/near_disll"
+        android:layout_below="@+id/near_textchn"
+        android:layout_alignLeft="@+id/near_textchn"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/near_distance"
+            android:text="距离"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#615f5f"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/near_dis_num"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:textColor="@color/app_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="公里"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#615f5f"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</RelativeLayout>

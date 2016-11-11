@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/meet_con_title"
+        android:text="遇见世界"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/meet_con_summary"
+        android:text="景致唯有高空才能领略其美"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/meet_header"
+        layout="@layout/item_worldnote_header" />
+
+    <include layout="@layout/item_meet_body"/>
+
+</LinearLayout>

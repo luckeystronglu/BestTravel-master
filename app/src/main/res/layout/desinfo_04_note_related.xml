@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:visibility="gone"
+    android:divider="@drawable/diliver_des_item"
+    android:showDividers="end"
+    android:id="@+id/desinfo_note_relate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/des_related_travel_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/bestplan_gray_textcolor"
+        android:text="相关氢游记"
+
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/des_related_big_img"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@mipmap/ic_launcher"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/des_note_img_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="#514c4c"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="8"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="14dp"
+        android:paddingTop="14dp"
+        >
+
+        <TextView
+            android:id="@+id/travel_note_tv_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by"
+            android:textColor="#8f8888"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/travel_note_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="Mildred"
+            android:textColor="@color/app_theme" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/travel_note_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="就要发呆"
+        android:textColor="#2da7b9"
+        android:textSize="16sp" />
+
+
+    <com.ms.square.android.expandabletextview.ExpandableTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/expand_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        expandableTextView:maxCollapsedLines="4"
+        expandableTextView:animDuration="200">
+
+        <TextView
+            android:id="@id/expandable_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:text="地点"
+            android:textSize="16sp"
+            android:textColor="#666666" />
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/frame_morebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="点击查看全文"
+                android:layout_marginTop="6dp"
+                android:textSize="16sp"
+                android:textColor="#00f"
+                android:clickable="true"
+                />
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:paddingBottom="10dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="35dp" />
+
+        </FrameLayout>
+
+    </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:divider="@drawable/des_noterelate_divider"
+        android:showDividers="beginning|end"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="#d4e5dd"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="2357篇云南游记"
+            android:textColor="@color/app_theme"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
