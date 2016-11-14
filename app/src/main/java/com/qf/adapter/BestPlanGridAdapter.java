@@ -69,10 +69,10 @@ public class BestPlanGridAdapter extends BaseAdapter{
         Glide.with(context)
                 .load(gridlist.get(position).getPhoto_url())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.img_placeholder)
                 .thumbnail(0.1f)
                 .crossFade(500)
                 .into(viewHolder.grid_img);
+        /* .placeholder(R.drawable.image_app)*/
         return convertView;
     }
 

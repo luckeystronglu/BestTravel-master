@@ -45,6 +45,7 @@ public class SceneryMapAdapter extends RecyclerView.Adapter<SceneryMapAdapter.Sc
     public void onBindViewHolder(SceneryHolder holder, int position) {
         holder.tv_title.setText(daylist.get(position).getPoints().get(0).getInspiration_activity().getDestination().getName());
         holder.tv_summary.setText(daylist.get(position).getDescription());
+        holder.daynum.setText(position + 1 + "");
         pointlist=daylist.get(position).getPoints();
 
         holder.smallrv.setLayoutManager(new LinearLayoutManager(context));
@@ -63,10 +64,11 @@ public class SceneryMapAdapter extends RecyclerView.Adapter<SceneryMapAdapter.Sc
 
     public class SceneryHolder extends RecyclerView.ViewHolder{
 
-        TextView tv_title,tv_summary;
+        TextView tv_title,tv_summary,daynum;
         RecyclerView smallrv;
         public SceneryHolder(View itemView) {
             super(itemView);
+            this.daynum = (TextView) itemView.findViewById(R.id.daynum);
             this.tv_title = (TextView) itemView.findViewById(R.id.tv_day_destination);
             this.tv_summary = (TextView) itemView.findViewById(R.id.map_travel_tv_note);
             smallrv = (RecyclerView) itemView.findViewById(R.id.rv_days_scenery);

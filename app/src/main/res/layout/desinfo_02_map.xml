@@ -29,8 +29,8 @@
             android:id="@+id/bmapView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_margin="10dp"
-            android:clickable="true" />
+            android:layout_margin="5dp"
+            android:clickable="true"/>
 
         <Button
             android:id="@+id/btn_onmap"

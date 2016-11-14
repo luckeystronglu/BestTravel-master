@@ -15,8 +15,8 @@
         android:id="@+id/relative_mapdays_head"
         android:layout_width="match_parent"
         android:background="@color/app_theme"
-        android:alpha="0.8"
-        android:layout_height="70dp">
+        android:alpha="0.96"
+        android:layout_height="66dp">
         <!--android:alpha="0.6"-->
 
         <TextView
@@ -27,7 +27,7 @@
 
             android:gravity="center_vertical|left"
             android:paddingLeft="60dp"
-            android:paddingTop="10dp"
+            android:paddingTop="14dp"
             android:text="云南xx日游"
             android:textColor="#fff"
             android:textSize="20sp" />
@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="10dp"
-            android:paddingTop="10dp"
+            android:paddingTop="14dp"
             android:clickable="true"
             android:src="@drawable/search_back" />
 
@@ -50,7 +50,7 @@
             android:layout_alignParentRight="true"
             android:paddingLeft="10dp"
             android:paddingRight="16dp"
-            android:paddingTop="10dp"
+            android:paddingTop="14dp"
             android:clickable="true"
             android:src="@drawable/plan_travel_share" />
 

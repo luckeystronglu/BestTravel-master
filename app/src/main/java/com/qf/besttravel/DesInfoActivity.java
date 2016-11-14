@@ -7,11 +7,13 @@ import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -35,11 +37,13 @@ import com.google.gson.Gson;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.qf.contacts.Contact;
 import com.qf.entity.DesInfoEntity;
+import com.qf.widget.DesInfoScrollview;
 import com.qf.widget.plandetails.DestinationView;
 import com.qf.widget.plandetails.SelfTravelView;
 import com.qfkf.base.BaseActivity;
 import com.qfkf.util.DownUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -49,19 +53,20 @@ import butterknife.OnClick;
 /**
  * Created by lenovo on 2016/10/7.
  */
-public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownListener, RadioGroup.OnCheckedChangeListener{
-    @Bind(R.id.des_info_bigimg)
-    ImageView desInfoBigimg;
+public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownListener, RadioGroup.OnCheckedChangeListener, DesInfoScrollview.ScrollViewListener {
+   /* @Bind(R.id.des_selt_bigimg)
+    ImageView desInfoBigimg;*/
     @Bind(R.id.des_info_withimg_text)
     TextView desInfoWithimgText;
     @Bind(R.id.des_info_withimg_englishtext)
     TextView desInfoWithimgEnglishtext;
     @Bind(R.id.des_info_proname)
     TextView desInfoProname;
-    @Bind(R.id.plan_info_back_logo)
-    ImageView planInfoBackLogo;
-//    @Bind(R.id.relative_des_headinfo)
-//    RelativeLayout relativeDesHeadinfo;
+    @Bind(R.id.relative_des_headinfo)
+    RelativeLayout plan_desinfo_scro;
+    @Bind(R.id.plan_desinfo_scro)
+    DesInfoScrollview selfscroll;
+
     @Bind(R.id.tv_destination)
     TextView tvDestination;
     @Bind(R.id.horizontal_des_city)
@@ -107,12 +112,14 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
     @Bind(R.id.line_self_travel)
     LinearLayout lineSelfTravel;
 
+    private ImageView desInfoBigimg;
     SparseBooleanArray mCollapsedStatus;
     private ExpandableTextView expTv1;
     private TextView frame_morebtn;
 
-    private int id;
+    private int id,areaid;
     private double lat, lng; //纬度、经度
+    private int height; //渐变栏的高度
 
     private String baiducity;
     public LocationClient mLocationClient = null;
@@ -234,7 +241,9 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
     private int mapid;
     private String mapurl;
     private List<DesInfoEntity.DataBean.SectionsBean> sectionlist;
+    private List<DesInfoEntity> arealist = new ArrayList<>();
     private Intent intent;
+    private String areaname;
 
     //    private ViewTreeObserver vto;
 
@@ -253,6 +262,7 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
+        areaid = intent.getIntExtra("areaid",-1);
         lat = intent.getDoubleExtra("lat", 22.61);//获取纬度，默认深圳市纬度
         lng = intent.getDoubleExtra("lng", 114.06);//获取经度，默认深圳市经度
         if (id != -1) {
@@ -270,8 +280,26 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
 
         mLocationClient.start();//开始定位
 
+        desInfoBigimg = findViewByIds(R.id.des_selt_bigimg);
+        desInfoBigimg.setFocusable(true);
+        desInfoBigimg.setFocusableInTouchMode(true);
+        desInfoBigimg.requestFocus();
+        initListeners();
+
 //        setalpha();
 
+    }
+
+    private void initListeners() {
+        ViewTreeObserver vto = desInfoBigimg.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                plan_desinfo_scro.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                height = desInfoBigimg.getHeight();
+                selfscroll.setScrollViewListener(DesInfoActivity.this);
+            }
+        });
     }
 
   /*  private void setalpha() {
@@ -364,8 +392,9 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
             final DesInfoEntity desInfoEntity = (DesInfoEntity) object;
             String url_bigimg = desInfoEntity.getData().getDestination().getPhoto_url();
             glidedownimg(url_bigimg, desInfoBigimg);//下载目的地背景大图
-            desInfoProname.setText(desInfoEntity.getData().getDestination().getName());
-            desInfoWithimgText.setText(desInfoEntity.getData().getDestination().getName());
+            areaname = desInfoEntity.getData().getDestination().getName();
+            desInfoProname.setText(areaname);
+            desInfoWithimgText.setText(areaname);
             desInfoWithimgEnglishtext.setText(desInfoEntity.getData().getDestination().getName_en());
             sectionlist = desInfoEntity.getData().getSections();
             for (final DesInfoEntity.DataBean.SectionsBean sectionsBean : sectionlist) {
@@ -374,6 +403,15 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
                         llDestination.setVisibility(View.VISIBLE);
                         tvDestination.setText(sectionsBean.getTitle());
                         desMap.setText(sectionsBean.getButton_text());
+                        desMap.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                intent = new Intent(DesInfoActivity.this, SummaryMapActivity.class);
+                                intent.putExtra("areaid",id);
+                                intent.putExtra("areaname",areaname);//经度
+                                startActivity(intent);
+                            }
+                        });
                         final List<DesInfoEntity.DataBean.SectionsBean.ModelsBean> models = sectionsBean.getModels();
                         for (final DesInfoEntity.DataBean.SectionsBean.ModelsBean model : models) {
                             DestinationView desview = new DestinationView(getApplicationContext());
@@ -481,6 +519,17 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
                             }
                         });
 
+                        buttonText.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent in = new Intent(DesInfoActivity.this,MoreNoteActivity.class);
+                                in.putExtra("areaid",areaid);
+                                in.putExtra("areaname",areaname);
+                                startActivity(in);
+
+                            }
+                        });
+
                         break;
 
                 }
@@ -572,7 +621,22 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
         mMapView.onPause();
     }
 
+    @Override
+    public void onScrollChanged(DesInfoScrollview scrollView, int x, int y, int oldx, int oldy) {
+        if (y <= 0) {   //设置标题的背景颜色
+            desInfoProname.setTextColor(Color.argb((int) 0, 255, 255, 255));
+            plan_desinfo_scro.setBackgroundColor(Color.argb((int) 0, 117, 207, 215));
+        } else if (y > 0 && y <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
+            float scale = (float) y / height;
+            float alpha = (255 * scale);
+            desInfoProname.setTextColor(Color.argb((int) alpha, 255, 255, 255));
+            plan_desinfo_scro.setBackgroundColor(Color.argb((int) alpha, 117, 207, 215));
+        } else {    //滑动到banner下面设置普通颜色
+            desInfoProname.setTextColor(Color.argb((int) 255, 255, 255, 255));
+            plan_desinfo_scro.setBackgroundColor(Color.argb((int) 255, 117, 207, 215));
+        }
 
+    }
 
 
 //    @Override

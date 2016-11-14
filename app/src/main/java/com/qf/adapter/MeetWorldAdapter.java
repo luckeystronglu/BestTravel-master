@@ -227,7 +227,7 @@ public class MeetWorldAdapter extends RecyclerView.Adapter<MeetWorldAdapter.Meet
                 .load(datas.get(position).getUser_activity().getContents().get(0).getPhoto_url())
                 .crossFade(500)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.avtar_placeholder_big)
+                .placeholder(R.drawable.image_app)
                 .thumbnail(0.1f)
                 .into(holder.bigimg);
 

@@ -59,7 +59,7 @@ public class TravelNoteFragment extends BaseFragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "哼，我家洁儿又调皮了", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "这是FloatingActionButton", Toast.LENGTH_SHORT).show();
                 }
             });
         }

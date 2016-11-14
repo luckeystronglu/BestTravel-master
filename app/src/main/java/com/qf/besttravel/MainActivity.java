@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             if (System.currentTimeMillis() - presstime < 2000) {
                 this.finish();
             } else {
-                Toast.makeText(MainActivity.this, "再按一次退出氢气球", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "再按一次退出Best Travel", Toast.LENGTH_SHORT).show();
                 presstime = System.currentTimeMillis();
             }
 

@@ -3,6 +3,8 @@ package com.qf.besttravel;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.qf.adapter.OrderAdapter;
 import com.qf.entity.TravelOrderEntity;
@@ -29,6 +31,7 @@ public class MakeOrderActivity extends BaseActivity{
 
     private List<TravelOrderEntity.DataBean> datas= new ArrayList<>();
     private RecyclerView recyclerView;
+    private ImageView imgback;
 
     private OrderAdapter adapter;
 
@@ -47,11 +50,18 @@ public class MakeOrderActivity extends BaseActivity{
 //        tv_onekey_summary = findViewByIds(R.id.xingcheng_onestep_summary);
 //        tv_onekey_title.setText(datas.get(0).getTitle());
 //        tv_onekey_summary.setText(datas.get(0).getSummary());
-
+        imgback = findViewByIds(R.id.scenery_web_back);
         recyclerView = (RecyclerView) findViewById(R.id.travel_order_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new OrderAdapter(this);
         recyclerView.setAdapter(adapter);
+
+        imgback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 

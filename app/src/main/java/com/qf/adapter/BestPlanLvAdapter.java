@@ -92,6 +92,7 @@ public class BestPlanLvAdapter extends BaseAdapter{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                DestinationEntity.DataBean.DestinationsBean destinationsBean = da.get(position);
                 Intent intent = new Intent(context, DesInfoActivity.class);
+                intent.putExtra("areaid",da.get(position).getDistrict_id());
                 intent.putExtra("id",da.get(position).getId());
                 intent.putExtra("lat",da.get(position).getLat());//纬度
                 intent.putExtra("lng",da.get(position).getLng());//经度

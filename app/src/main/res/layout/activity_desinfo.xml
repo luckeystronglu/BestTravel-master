@@ -30,10 +30,10 @@
                     android:background="@color/app_theme">
 
                     <ImageView
-
-                        android:id="@+id/des_info_bigimg"
+                        android:paddingTop="22dp"
+                        android:id="@+id/des_selt_bigimg"
                         android:layout_width="match_parent"
-                        android:layout_height="190dp"
+                        android:layout_height="210dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_placeholder" />
                         <!--android:layout_marginTop="-70dp"-->
@@ -80,7 +80,6 @@
     <RelativeLayout
         android:id="@+id/relative_des_headinfo"
         android:layout_width="match_parent"
-        android:background="@color/app_theme"
         android:layout_height="70dp">
         <!--android:alpha="0.6"-->
 
@@ -94,8 +93,8 @@
             android:paddingLeft="60dp"
             android:paddingTop="10dp"
             android:text="云南"
-            android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textColor="#00ffffff"
+            android:textSize="20sp"/>
         <!--android:background="@color/app_theme"-->
 
         <ImageView

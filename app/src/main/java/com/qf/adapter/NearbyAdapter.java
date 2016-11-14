@@ -62,7 +62,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.OrderHolde
                     .load(list.get(position).getPhoto_url())
                     .crossFade(500)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.img_placeholder)
+                    .placeholder(R.drawable.image_app)
 //                    .transform(new GlideCircleTransform(context))
                     .thumbnail(0.1f)
                     .into(holder.iv_near);

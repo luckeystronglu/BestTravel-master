@@ -35,7 +35,7 @@ public class MediaInfoActivity extends BaseActivity{
         enter_app_img = findViewByIds(R.id.click_enter_app);
         look_media_again = findViewByIds(R.id.tv_look_again);
         videoView = findViewByIds(R.id.guide_videoview);
-        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.media);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.media2);
 
         videoView.setMediaController(new MediaController(this)); //设置播放控制器
 

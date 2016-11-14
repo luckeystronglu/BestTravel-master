@@ -60,6 +60,9 @@
         <activity android:name=".NearbyActivity"/><!--Plana ctivity查看图片-->
         <activity android:name=".NearInspirationActivity"/><!--附近灵感-->
         <activity android:name=".MoreDestinationActivity"/><!--更多目的地-->
+        <activity android:name=".MoreNoteActivity"/><!--更多游记-->
+        <activity android:name=".MNoteLookPicsActivity"/><!--更多游记图片查看-->
+        <activity android:name=".SummaryMapActivity"/><!--概括与地图-->
 
 
 

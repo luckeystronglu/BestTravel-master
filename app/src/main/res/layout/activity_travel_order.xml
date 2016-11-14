@@ -31,6 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="12dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
             android:text="氢气球发明了旅行黑科技，只点一个键，立刻生成为你定制的行程地图。"
             android:textSize="16sp"/>
 

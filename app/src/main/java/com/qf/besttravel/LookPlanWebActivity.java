@@ -1,15 +1,20 @@
 package com.qf.besttravel;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.qf.widget.DesInfoScrollview;
 import com.qfkf.base.BaseActivity;
 
 import butterknife.Bind;
@@ -21,19 +26,18 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 /**
  * Created by zhoudan on 2016/10/8.
  */
-public class LookPlanWebActivity extends BaseActivity {
-    @Bind(R.id.travel_map_days_title)
-    TextView travelMapDaysTitle;
-    @Bind(R.id.scenery_web_back)
-    ImageView sceneryWebBack;
-    @Bind(R.id.scenery_web_mapguide)
-    ImageView sceneryWebMapguide;
-    @Bind(R.id.scenery_web_share)
-    ImageView sceneryWebShare;
+@TargetApi(Build.VERSION_CODES.M)
+public class LookPlanWebActivity extends BaseActivity implements DesInfoScrollview.ScrollViewListener {
+
     @Bind(R.id.scenery_web_rela)
     RelativeLayout sceneryWebRela;
+
     private WebView web_straandtrev;
     private String web_url;
+    private int height;
+    private WebSettings webSettings;
+    DesInfoScrollview selfscroll;
+    private TextView web_title_tv;
 
     @Override
     public int getContentViewId() {
@@ -45,13 +49,18 @@ public class LookPlanWebActivity extends BaseActivity {
         Intent intent = getIntent();
         web_url = intent.getStringExtra("web_url");
         web_straandtrev = (WebView) findViewById(R.id.web_straandtrev);
-        web_straandtrev.getSettings().setJavaScriptEnabled(true);
-        web_straandtrev.getSettings().setDomStorageEnabled(true);
-        web_straandtrev.getSettings().setDefaultTextEncodingName("utf-8");
-        web_straandtrev.getSettings().setDefaultFontSize(18);
-        web_straandtrev.getSettings().setFixedFontFamily("微软雅黑");
-        web_straandtrev.getSettings().setLoadWithOverviewMode(true);
-        web_straandtrev.getSettings().setUseWideViewPort(true);
+        webSettings = web_straandtrev.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setDefaultTextEncodingName("utf-8");
+        webSettings.setDefaultFontSize(18);
+        webSettings.setFixedFontFamily("微软雅黑");
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+//        web_straandtrev.requestFocus();
+        selfscroll = findViewByIds(R.id.web_scrol);
+        web_title_tv = findViewByIds(R.id.travel_map_days_title);
+
 
         web_straandtrev.setWebViewClient(new WebViewClient() {
             @Override
@@ -61,6 +70,26 @@ public class LookPlanWebActivity extends BaseActivity {
             }
         });
         web_straandtrev.loadUrl(web_url);
+
+        web_straandtrev.setFocusable(true);
+        web_straandtrev.setFocusableInTouchMode(true);
+        web_straandtrev.requestFocus();
+        initListeners();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            web_straandtrev.setOnScrollChangeListener(this);
+//        }
+    }
+
+    private void initListeners() {
+        ViewTreeObserver vto = web_straandtrev.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                sceneryWebRela.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                height = 200;
+                selfscroll.setScrollViewListener(LookPlanWebActivity.this);
+            }
+        });
     }
 
     @Override
@@ -127,6 +156,23 @@ public class LookPlanWebActivity extends BaseActivity {
 // 启动分享GUI
         oks.show(this);
     }
+
+    @Override
+    public void onScrollChanged(DesInfoScrollview scrollView, int x, int y, int oldx, int oldy) {
+        if (y <= 0) {   //设置标题的背景颜色
+            web_title_tv.setTextColor(Color.argb((int) 0, 255, 255, 255));
+            sceneryWebRela.setBackgroundColor(Color.argb((int) 0, 117, 207, 215));
+        } else if (y > 0 && y <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
+            float scale = (float) y / height;
+            float alpha = (255 * scale);
+            web_title_tv.setTextColor(Color.argb((int) alpha, 255, 255, 255));
+            sceneryWebRela.setBackgroundColor(Color.argb((int) alpha, 117, 207, 215));
+        } else {    //滑动到banner下面设置普通颜色
+            web_title_tv.setTextColor(Color.argb((int) 255, 255, 255, 255));
+            sceneryWebRela.setBackgroundColor(Color.argb((int) 255, 117, 207, 215));
+        }
+    }
+
 
 //    @Override
 //    public boolean onKeyDown(int keyCode, KeyEvent event) {
