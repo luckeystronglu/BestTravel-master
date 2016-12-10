@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.qf.adapter.MoreNoteAdapter;
-import com.qf.adapter.MoreNoteEntity;
+import com.qf.entity.MoreNoteEntity;
 import com.qf.contacts.Contact;
 import com.qfkf.base.BaseActivity;
 import com.qfkf.util.DownUtil;
@@ -119,5 +119,11 @@ public class MoreNoteActivity extends BaseActivity implements DownUtil.OnDownLis
             });
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        morelist.clear();
     }
 }

@@ -36,7 +36,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="氢气球发明了旅行黑科技，只点一个键，立刻生成为你定制的行程地图。"
+            android:text="Best Travel 发明了旅行黑科技，只点一个键，立刻生成为你定制的行程地图。"
             android:textSize="16sp"/>
 
     </LinearLayout>

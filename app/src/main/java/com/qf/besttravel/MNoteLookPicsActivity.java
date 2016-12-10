@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.qf.adapter.MoreNoteEntity;
+import com.qf.entity.MoreNoteEntity;
 import com.qfkf.base.BaseActivity;
 
 import java.util.List;

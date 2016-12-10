@@ -43,7 +43,6 @@ import com.qf.widget.plandetails.SelfTravelView;
 import com.qfkf.base.BaseActivity;
 import com.qfkf.util.DownUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -241,7 +240,6 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
     private int mapid;
     private String mapurl;
     private List<DesInfoEntity.DataBean.SectionsBean> sectionlist;
-    private List<DesInfoEntity> arealist = new ArrayList<>();
     private Intent intent;
     private String areaname;
 
@@ -257,8 +255,6 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
 
     @Override
     protected void init() {
-
-
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
@@ -286,7 +282,6 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
         desInfoBigimg.requestFocus();
         initListeners();
 
-//        setalpha();
 
     }
 
@@ -302,50 +297,7 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
         });
     }
 
-  /*  private void setalpha() {
-        Log.d("print", "setalpha: "+height);
-        relativeDesHeadinfo = findViewByIds(R.id.relative_des_headinfo);
-        relativeDesHeadinfo.setBackgroundColor(Color.parseColor("#50D2DE"));
-        planDesinfoScro.setScrollViewListener(this);
-//        vto = desInfoBigimg.getViewTreeObserver();
-//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                desInfoBigimg.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-//                height = desInfoBigimg.getHeight();
-////                desInfoBigimg.getWidth();
-//                planDesinfoScro.setScrollViewListener(DesInfoActivity.this);
-//            }
-//
-//        });
-    }
 
-    @Override
-    public void onScrollChanged(DesInfoScrollview scrollView, int x, int y, int oldx, int oldy) {
-        if (y <= height/2){
-            relativeDesHeadinfo.setBackgroundColor(Color.argb(0x00,0x50,0xD2,0xDE));
-        }
-        else if (y <= height && height/2 <y){
-            float scale =(float) y /height;
-            float alpha =  (255 * scale);
-            relativeDesHeadinfo.setBackgroundColor(Color.argb((int) alpha,0x50,0xD2,0xDE));
-        }
-        else if (y > height){
-            relativeDesHeadinfo.setBackgroundColor(Color.argb(0xEE,0x50,0xD2,0xDE));
-        }
-
-    }*/
-
-
-
-  /*  @Override
-    public void onScrollChanged(DesInfoScrollview scrollView, int x, int y, int oldx, int oldy) {
-        if (y <= height){
-            float scale =(float) y /height;
-            float alpha =  (255 * scale);
-            relativeDesHeadinfo.setBackgroundColor(Color.argb((int) alpha,0x50,0xD2,0xDE));
-        }
-    }*/
 
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
@@ -605,6 +557,7 @@ public class DesInfoActivity extends BaseActivity implements DownUtil.OnDownList
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
+        sectionlist.clear();
     }
 
     @Override

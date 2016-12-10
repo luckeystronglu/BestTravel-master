@@ -25,6 +25,7 @@ public class LookPicsActivity extends BaseActivity{
     TextView tv_num_now, tv_num_total;
     private ViewPager picvp;
     private PicsVpAdapter vpAdapter;
+    private List<TravelNote2Entity.DataBean.ActivityBean.ContentsBean> contents;
 
     @Override
     public int getContentViewId() {
@@ -38,11 +39,11 @@ public class LookPicsActivity extends BaseActivity{
         tv_num_total = findViewByIds(R.id.pic_num_total);
         Intent intent = getIntent();
         TravelNote2Entity.DataBean travelentity = (TravelNote2Entity.DataBean) intent.getSerializableExtra("entity");
-        List<TravelNote2Entity.DataBean.ActivityBean.ContentsBean> contents = travelentity.getActivity().getContents();
+        contents = travelentity.getActivity().getContents();
         int po = intent.getIntExtra("picnum",-1);
         tv_num_now.setText((po + 1) + "");
         tv_num_total.setText(contents.size() + "");
-        vpAdapter = new PicsVpAdapter(this,contents);
+        vpAdapter = new PicsVpAdapter(this, contents);
         picvp.setAdapter(vpAdapter);
         picvp.setCurrentItem(po);
         picvp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -62,6 +63,13 @@ public class LookPicsActivity extends BaseActivity{
             }
         });
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        contents.clear();
     }
 
     public static class PicsVpAdapter extends PagerAdapter{

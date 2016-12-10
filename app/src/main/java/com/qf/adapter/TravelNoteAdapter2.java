@@ -18,6 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.qf.besttravel.LookPicsActivity;
 import com.qf.besttravel.R;
+import com.qf.besttravel.UserInfoActivity;
 import com.qf.besttravel.WorldNoteActivity;
 import com.qf.entity.TravelNote2Entity;
 import com.qf.widget.GlideCircleTransform;
@@ -278,6 +279,7 @@ public class TravelNoteAdapter2 extends RecyclerView.Adapter<TravelNoteAdapter2.
                 .thumbnail(0.1f)
                 .into(holder.bigimg);
 
+
         List<TravelNote2Entity.DataBean.ActivityBean.ContentsBean> imgs = datas.get(position).getActivity().getContents();
         intent = new Intent(context,LookPicsActivity.class);
 
@@ -353,6 +355,14 @@ public class TravelNoteAdapter2 extends RecyclerView.Adapter<TravelNoteAdapter2.
                 .transform(new GlideCircleTransform(context))
                 .thumbnail(0.1f)
                 .into(holder.userimg);
+        holder.userimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UserInfoActivity.class);
+                intent.putExtra("useimgid",datas.get(position).getActivity().getUser().getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

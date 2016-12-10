@@ -26,6 +26,7 @@ public class SummaryMapActivity extends BaseActivity implements DownUtil.OnDownL
     private TextView area_tv;
     private int areaid;
     private String areaname;
+    private List<SummaryMapEntity.DataBean.GroupingsBean> data;
 
     @Override
     public int getContentViewId() {
@@ -70,10 +71,14 @@ public class SummaryMapActivity extends BaseActivity implements DownUtil.OnDownL
     public void downSucc(Object object) {
         if (object != null) {
             SummaryMapEntity entity = (SummaryMapEntity) object;
-            List<SummaryMapEntity.DataBean.GroupingsBean> data = entity.getData().getGroupings();
+            data = entity.getData().getGroupings();
             adapter.setDatas(data);
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        data.clear();
+    }
 }

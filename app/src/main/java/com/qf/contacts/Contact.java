@@ -34,7 +34,7 @@ public interface Contact {
 
     //遇见世界
 //    String MEET_WORLD = "api/v1/albums/90.json";
-    String MEET_WORLD = "http://q.chanyouji.com/api/v1/albums/90.json";
+    String MEET_WORLD = "http://q.chanyouji.com/api/v1/albums/%d.json";
 
     //附近目的地
     String NEARBY_DIS = "http://q.chanyouji.com/api/v2/destinations/nearby.json?lat=%f&lng=%f";
@@ -42,5 +42,11 @@ public interface Contact {
     String NEARBY_INSPI_NOTE = "http://q.chanyouji.com/api/v2/destinations/nearby_inspiration_activities.json?lat=22.529226&lng=114.026752";
     //
     String AREA_DESTI = "http://q.chanyouji.com/api/v2/destinations/list.json?area=%s";
+
+
+//    String USER_INFO = "http://q.chanyouji.com/api/v1/users/%d/profiles.json"; //1049574
+    String USER_NOTE1 = "http://q.chanyouji.com/api/v1/users/%d/user_activities.json?page=1"; //1049574
+    String USER_INFO = "http://q.chanyouji.com/api/v1/users/%d/profiles.json"; //2180
+
 
 }

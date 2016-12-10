@@ -1,4 +1,4 @@
-package com.qf.adapter;
+package com.qf.entity;
 
 import java.io.Serializable;
 import java.util.List;

@@ -45,4 +45,6 @@ dependencies {
     compile files('libs/ShareSDK-Wechat-Moments-2.7.7.jar')
     compile 'com.ms-square:expandableTextView:0.1.4'
     compile files('libs/libammsdk.jar')
+
+    compile 'com.zhy:base-rvadapter:3.0.3'
 }

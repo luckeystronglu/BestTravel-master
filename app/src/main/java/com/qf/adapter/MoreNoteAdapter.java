@@ -18,6 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.qf.besttravel.MNoteLookPicsActivity;
 import com.qf.besttravel.R;
+import com.qf.entity.MoreNoteEntity;
 import com.qf.widget.GlideCircleTransform;
 
 import java.util.ArrayList;

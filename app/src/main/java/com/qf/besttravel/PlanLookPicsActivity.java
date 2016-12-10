@@ -25,6 +25,7 @@ public class PlanLookPicsActivity extends BaseActivity {
     private TextView tv_num_now, tv_num_total;
     private ViewPager picvp;
     private PicsVpAdapter vpAdapter;
+    private List<DesInfoEntity.DataBean.SectionsBean.ModelsBean.ContentBean> contents;
 
     @Override
     public int getContentViewId() {
@@ -38,11 +39,11 @@ public class PlanLookPicsActivity extends BaseActivity {
         tv_num_total = findViewByIds(R.id.pic_num_total);
         Intent intent = getIntent();
         DesInfoEntity.DataBean.SectionsBean.ModelsBean travelentity = (DesInfoEntity.DataBean.SectionsBean.ModelsBean) intent.getSerializableExtra("entity3");
-        List<DesInfoEntity.DataBean.SectionsBean.ModelsBean.ContentBean> contents = travelentity.getContents();
+        contents = travelentity.getContents();
         int po = intent.getIntExtra("po",-1);
         tv_num_now.setText((po + 1) + "");
         tv_num_total.setText(contents.size() + "");
-        vpAdapter = new PicsVpAdapter(this,contents);
+        vpAdapter = new PicsVpAdapter(this, contents);
         picvp.setAdapter(vpAdapter);
         picvp.setCurrentItem(po);
         picvp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -62,6 +63,12 @@ public class PlanLookPicsActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        contents.clear();
     }
 
     public static class PicsVpAdapter extends PagerAdapter {

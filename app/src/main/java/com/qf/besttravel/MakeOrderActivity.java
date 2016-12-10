@@ -11,7 +11,6 @@ import com.qf.entity.TravelOrderEntity;
 import com.qf.utils.GetJsonDatas;
 import com.qfkf.base.BaseActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -29,14 +28,11 @@ public class MakeOrderActivity extends BaseActivity{
 
 
 
-    private List<TravelOrderEntity.DataBean> datas= new ArrayList<>();
+//    private List<TravelOrderEntity.DataBean> datas= new ArrayList<>();
     private RecyclerView recyclerView;
     private ImageView imgback;
-
     private OrderAdapter adapter;
-
-//    private TextView tv_onekey_title,tv_onekey_summary;
-
+    private List<TravelOrderEntity.DataBean.ItemsBean> da;
 
     @Override
     public int getContentViewId() {
@@ -69,12 +65,19 @@ public class MakeOrderActivity extends BaseActivity{
     protected void loadDatas() {
         String order = GetJsonDatas.getJSON2("makeorder",this);
         TravelOrderEntity orderEntity = GetJsonDatas.getTravelOrderEntity(order);
-        List<TravelOrderEntity.DataBean.ItemsBean> da = orderEntity.getData().getItems();
+        da = orderEntity.getData().getItems();
         adapter.setDatas(da);
 //        new DownUtil().setOnDownListener(this).downJSON(Contact.TRAVEL_ORDER);
     }
 
-//    @Override
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        da.clear();
+    }
+
+
+    //    @Override
 //    public Object paresJson(String json) {
 //        if (json != null){
 //            try {

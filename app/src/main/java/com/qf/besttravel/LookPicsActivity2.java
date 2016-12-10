@@ -25,6 +25,7 @@ public class LookPicsActivity2 extends BaseActivity{
     TextView tv_num_now, tv_num_total;
     private ViewPager picvp;
     private PicsVpAdapter vpAdapter;
+    private List<WorldNoteEntity.ContentsBean> contents;
 
     @Override
     public int getContentViewId() {
@@ -38,11 +39,11 @@ public class LookPicsActivity2 extends BaseActivity{
         tv_num_total = findViewByIds(R.id.pic_num_total);
         Intent intent = getIntent();
         WorldNoteEntity worldNoteEntity = (WorldNoteEntity) intent.getSerializableExtra("entity2");
-        List<WorldNoteEntity.ContentsBean> contents = worldNoteEntity.getContents();
+        contents = worldNoteEntity.getContents();
         int po = intent.getIntExtra("picnum2",-1);
         tv_num_now.setText((po + 1) + "");
         tv_num_total.setText(contents.size() + "");
-        vpAdapter = new PicsVpAdapter(this,contents);
+        vpAdapter = new PicsVpAdapter(this, contents);
         picvp.setAdapter(vpAdapter);
         picvp.setCurrentItem(po);
         picvp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -62,6 +63,12 @@ public class LookPicsActivity2 extends BaseActivity{
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        contents.clear();
     }
 
     public static class PicsVpAdapter extends PagerAdapter{

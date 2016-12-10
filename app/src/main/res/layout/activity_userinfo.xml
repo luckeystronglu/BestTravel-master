@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.qf.besttravel.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true"
+       >
+        <!-- android:theme="@style/AppTheme.AppBarOverlay"-->
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/app_theme"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!--android:background="@drawable/m015"-->
+
+                <ImageView
+                    android:id="@+id/user_backg_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+                <ImageView
+                    android:id="@+id/user_circle_img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/image_app"
+                    android:layout_centerInParent="true" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_circle_img"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="月儿" />
+
+                <ImageView
+                    android:id="@+id/user_mark_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/user_name"
+                    android:layout_toRightOf="@+id/user_name"
+                    android:paddingTop="4dp"
+                    android:src="@drawable/gender_w" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_name"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/user_focus_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="关注 | " />
+
+                    <TextView
+                        android:id="@+id/user_fans_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9" />
+
+                    <TextView
+                        android:id="@+id/user_focus_numtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="粉丝" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                <!--android:layout_height="?attr/actionBarSize"-->
+
+                <ImageView
+                    android:id="@+id/user_info_back_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/search_back" />
+
+                <TextView
+                    android:id="@+id/user_info_personal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center"
+                    android:paddingRight="160dp"
+                    android:text="个人主页"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+                <!--android:background="@color/app_theme"-->
+
+                <TextView
+                    android:id="@+id/user_info_focus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignBaseline="@+id/user_info_back_logo"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|center"
+                    android:paddingRight="10dp"
+                    android:text="关注她"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/user_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_layout_height"
+            android:layout_gravity="center_vertical"
+            app:tabIndicatorColor="@color/tab_indicator_color"
+
+            app:tabIndicatorHeight="@dimen/tab_indicator_height"
+            app:tabTextAppearance="@style/text_travel_tab"
+            app:tabTextColor="@color/tab_textcolor" />
+        <!-- android:background="@color/app_theme"-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_height"
+            android:background="@color/app_theme"
+            android:paddingBottom="3dp"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_scrolling" />
+
+
+</android.support.design.widget.CoordinatorLayout>
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/actionbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qf.besttravel.MainActivity">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/re02"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <ImageView
+                        android:id="@+id/user_bg_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:id="@+id/user_circle_img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/image_app"
+                        android:layout_centerInParent="true" />
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_circle_img"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="月儿" />
+
+                    <ImageView
+                        android:id="@+id/user_mark_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/user_name"
+                        android:layout_toRightOf="@+id/user_name"
+                        android:paddingTop="2dp"
+                        android:src="@drawable/gender_w" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_name"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/user_focus_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注 | " />
+
+                        <TextView
+                            android:id="@+id/user_fans_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9" />
+
+                        <TextView
+                            android:id="@+id/user_focus_numtext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="粉丝" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_user_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@color/app_theme">
+                    &lt;!&ndash;android:alpha="0.6"&ndash;&gt;
+
+                    <TextView
+                        android:id="@+id/user_info_personal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|center"
+                        android:paddingLeft="60dp"
+                        android:paddingTop="10dp"
+                        android:text="个人主页"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+                    &lt;!&ndash;android:background="@color/app_theme"&ndash;&gt;
+
+                    <ImageView
+                        android:id="@+id/user_info_back_logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/search_back" />
+
+                    <TextView
+                        android:id="@+id/user_info_focus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignBaseline="@+id/user_info_back_logo"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|center"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:text="关注她"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+            </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/user_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tab_layout_height"
+                android:layout_gravity="center_vertical"
+                app:tabIndicatorColor="@color/tab_indicator_color"
+
+                app:tabIndicatorHeight="@dimen/tab_indicator_height"
+                app:tabTextAppearance="@style/text_travel_tab"
+                app:tabTextColor="@color/tab_textcolor" />
+            &lt;!&ndash; android:background="@color/app_theme"&ndash;&gt;
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/app_theme" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/user_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+</LinearLayout>
+-->

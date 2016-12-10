@@ -40,6 +40,7 @@ public class SceneryMapActivity extends BaseActivity implements DownUtil.OnDownL
     private TextView travelMapDaysTitle;
     private ImageView travelMapDaysBack;
     private ImageView plan_maptravel_share;
+    private List<SceneryEntity.DataBean.DaysBean> daysBeanList;
 
     @Override
     public int getContentViewId() {
@@ -119,18 +120,23 @@ public class SceneryMapActivity extends BaseActivity implements DownUtil.OnDownL
             SceneryEntity sceneryEntity = (SceneryEntity) object;
             travelMapDaysTitle.setText(sceneryEntity.getData().getTitle());
 
-            List<SceneryEntity.DataBean.DaysBean> daysBeanList = sceneryEntity.getData().getDays();
+            daysBeanList = sceneryEntity.getData().getDays();
 
             planMapdaysLv.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new SceneryMapAdapter(this,daysBeanList);
+            adapter = new SceneryMapAdapter(this, daysBeanList);
             planMapdaysLv.setAdapter(adapter);
 //            adapter.notifyDataSetChanged();
             adapter.setDatas(daysBeanList,lat,lng);
 
         }
-
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        daysBeanList.clear();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

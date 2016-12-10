@@ -249,7 +249,7 @@ public class MeetWorldEntity {
                  */
 
                 private List<DistrictsBean> districts;
-                private List<?> categories;
+                private List<CategoriesBean> categories;
 
                 public int getId() {
                     return id;
@@ -403,11 +403,11 @@ public class MeetWorldEntity {
                     this.districts = districts;
                 }
 
-                public List<?> getCategories() {
+                public List<CategoriesBean> getCategories() {
                     return categories;
                 }
 
-                public void setCategories(List<?> categories) {
+                public void setCategories(List<CategoriesBean> categories) {
                     this.categories = categories;
                 }
 
@@ -534,6 +534,36 @@ public class MeetWorldEntity {
 
                     public void setPosition(int position) {
                         this.position = position;
+                    }
+                }
+
+                public static class CategoriesBean {
+                    private int id;
+                    private String name;
+                    private String category_type;
+
+                    public int getId() {
+                        return id;
+                    }
+
+                    public void setId(int id) {
+                        this.id = id;
+                    }
+
+                    public String getName() {
+                        return name;
+                    }
+
+                    public void setName(String name) {
+                        this.name = name;
+                    }
+
+                    public String getCategory_type() {
+                        return category_type;
+                    }
+
+                    public void setCategory_type(String category_type) {
+                        this.category_type = category_type;
                     }
                 }
 

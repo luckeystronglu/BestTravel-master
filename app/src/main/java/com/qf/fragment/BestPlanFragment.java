@@ -1,5 +1,6 @@
 package com.qf.fragment;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.baidu.location.BDLocation;
@@ -10,6 +11,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.qf.adapter.BestPlanLvAdapter;
+import com.qf.besttravel.MeetWorldActivity;
 import com.qf.besttravel.R;
 import com.qf.entity.BannerItem;
 import com.qf.entity.Carousel2Entity;
@@ -94,7 +96,8 @@ public class BestPlanFragment extends BaseFragment{
     private List<String> pics;
     private List<String> titles;
     private List<BannerItem> bannerItems = new ArrayList<>();
-   /* private List<String> imglist = new ArrayList<>();
+    private Intent in;
+    /* private List<String> imglist = new ArrayList<>();
     private List<String> titles = new ArrayList<>();
     private List<BannerItem> bannerItems = new ArrayList<>();
 
@@ -110,6 +113,7 @@ public class BestPlanFragment extends BaseFragment{
 
     @Override
     protected void init(View view) {
+
         mLocationClient = new LocationClient(getActivity().getApplicationContext());     //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         initLocation();
@@ -172,6 +176,7 @@ public class BestPlanFragment extends BaseFragment{
 
     //头部的轮播图
     private void initCarousel() {
+        in = new Intent(getActivity(), MeetWorldActivity.class);
         String json_causel = GetJsonDatas.getJSON2("carousel", getContext());
         List<Carousel2Entity> capics = GetJsonDatas.getFoodsPic(json_causel);
         pics = new ArrayList<>();
@@ -194,17 +199,24 @@ public class BestPlanFragment extends BaseFragment{
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
                 .startTurning(3500);
         convenientBanner.setOnItemClickListener(new OnItemClickListener() {
+
             @Override
             public void onItemClick(int position) {
+
                 switch (position) {
                     case 0:
-//                        startActivity(new Intent(getActivity(), MeetWorldActivity.class));
+                        in.putExtra("id",18);
+                        startActivity(in);
 //                        Toast.makeText(getActivity(), "你点击了"+position, Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
+                        in.putExtra("id",96);
+                        startActivity(in);
 //                        Toast.makeText(getActivity(), "你点击了"+position, Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
+                        in.putExtra("id",90);
+                        startActivity(in);
 //                        Toast.makeText(getActivity(), "你点击了"+position, Toast.LENGTH_SHORT).show();
                         break;
                     default:
